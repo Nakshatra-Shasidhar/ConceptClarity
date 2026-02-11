@@ -1,1 +1,38 @@
-<!-- placeholder -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ConceptClarity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="outer-container">
+
+    <div class="card">
+
+        <h3 class="title">ConceptClarity</h3>
+
+        <form method="POST">
+            <input type="text" name="query" placeholder="Enter your topic..." required>
+            <button type="submit">Explain</button>
+        </form>
+
+        <div class="response-box">
+            {% if result %}
+                <p>{{ result }}</p>
+            {% else %}
+                <div class="info-circle">i</div>
+                <p class="placeholder">
+                    Explanation will appear here after submitting the term
+                </p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
