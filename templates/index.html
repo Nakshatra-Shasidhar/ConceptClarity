@@ -1,36 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ConceptClarity</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept Clarity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <div class="background-animation"></div>
+        
+        <header class="header">
+            <h1 class="title">
+                <span class="title-text">Concept Clarity</span>
+                <span class="title-accent">Interface</span>
+            </h1>
+            <p class="subtitle">Experience the future of interactive search</p>
+        </header>
 
-<div class="outer-container">
+        <main class="main-content">
+            <div class="query-card">
+                <form method="POST" class="query-form" id="queryForm">
+                    <div class="input-group">
+                        <label for="query" class="input-label">Enter your query</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                id="query" 
+                                name="query" 
+                                class="query-input"
+                                placeholder="Type something amazing..."
+                                required
+                            >
+                            <div class="input-focus-ring"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Analyze Query</span>
+                        <span class="btn-icon">→</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </form>
+            </div>
 
-    <div class="card">
+            <div class="result-card" id="resultCard" style="display: none;">
+                <div class="result-header">
+                    <h3 class="result-title">Analysis Result</h3>
+                </div>
+                <div class="result-content">
+                    <p class="result-text">Results will appear here...</p>
+                </div>
+                <div class="result-actions">
+                    <button class="action-btn" onclick="copyResult()">
+                        <span>Copy</span>
+                    </button>
+                    <button class="action-btn" onclick="shareResult()">
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+        </main>
 
-        <h3 class="title">ConceptClarity</h3>
-
-        <form method="POST">
-            <input type="text" name="query" placeholder="Enter scientific word.." required>
-            <button type="submit">Explain</button>
-        </form>
-
-        <div class="response-box">
-            {% if result %}
-                <p>{{ result }}</p>
-            {% else %}
-                <div class="info-circle">i</div>
-                <p class="placeholder">
-                    Explanation will appear here after submitting the term
-                </p>
-            {% endif %}
+        <div class="floating-elements">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
         </div>
-
     </div>
 
-</div>
-
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

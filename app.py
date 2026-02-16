@@ -9,12 +9,18 @@ def home():
 @app.route("/explain", methods=["POST"])
 def explain():
     data = request.get_json()
-    word = data.get("word")
+    term = data.get("word")
 
-    dummy_text = f"This is a dummy explanation for '{word}'."
+    if not term or not term.strip():
+        return jsonify({
+            "explanation": "Please enter a valid scientific term."
+        })
+
+    # Placeholder – will be replaced by AI model in Phase 2
+    explanation = f"This is a dummy explanation for '{term}'."
 
     return jsonify({
-        "explanation": dummy_text
+        "explanation": explanation
     })
 
 if __name__ == "__main__":
