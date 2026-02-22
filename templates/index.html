@@ -1,75 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <title>Concept Clarity Interface</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concept Clarity</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="background-animation"></div>
-        
-        <header class="header">
-            <h1 class="title">
-                <span class="title-text">Concept Clarity</span>
-                <span class="title-accent">Interface</span>
-            </h1>
-            <p class="subtitle">Experience the future of interactive search</p>
-        </header>
 
-        <main class="main-content">
-            <div class="query-card">
-                <form method="POST" class="query-form" id="queryForm">
-                    <div class="input-group">
-                        <label for="query" class="input-label">Enter your query</label>
-                        <div class="input-wrapper">
-                            <input 
-                                type="text" 
-                                id="query" 
-                                name="query" 
-                                class="query-input"
-                                placeholder="Type something amazing..."
-                                required
-                            >
-                            <div class="input-focus-ring"></div>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="btn-text">Analyze Query</span>
-                        <span class="btn-icon">→</span>
-                        <div class="btn-ripple"></div>
-                    </button>
-                </form>
-            </div>
+<section class="hero">
+    <h1 class="hero-title">
+        Concept Clarity <span>Interface</span>
+    </h1>
+    <p class="hero-subtitle">
+        Experience the future of interactive search
+    </p>
 
-            <div class="result-card" id="resultCard" style="display: none;">
-                <div class="result-header">
-                    <h3 class="result-title">Analysis Result</h3>
-                </div>
-                <div class="result-content">
-                    <p class="result-text">Results will appear here...</p>
-                </div>
-                <div class="result-actions">
-                    <button class="action-btn" onclick="copyResult()">
-                        <span>Copy</span>
-                    </button>
-                    <button class="action-btn" onclick="shareResult()">
-                        <span>Share</span>
-                    </button>
-                </div>
-            </div>
-        </main>
-
-        <div class="floating-elements">
-            <div class="floating-orb orb-1"></div>
-            <div class="floating-orb orb-2"></div>
-            <div class="floating-orb orb-3"></div>
-        </div>
+    <div class="query-card">
+        <label>Enter your query</label>
+        <input type="text" id="queryInput" placeholder="Type a scientific term..." />
+        <button onclick="sendQuery()">Explain →</button>
+        <div class="result" id="resultBox"></div>
     </div>
+</section>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
