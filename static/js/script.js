@@ -54,23 +54,43 @@ class AdvancedUI {
             this.showLoadingState(submitBtn);
 
             // Simulate processing
-            setTimeout(() => {
-                const resultCard = document.getElementById('resultCard');
-                if (resultCard) {
-                    resultCard.style.display = 'block';
-                    // Trigger animation
-                    resultCard.classList.remove('animate-in');
-                    void resultCard.offsetWidth; // Trigger reflow
-                    resultCard.classList.add('animate-in');
-                    
-                    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-                
-                // Reset button
-                submitBtn.innerHTML = '<span class="btn-text">Analyze Query</span><span class="btn-icon">→</span><div class="btn-ripple"></div>';
-                submitBtn.classList.remove('loading');
-                submitBtn.style.pointerEvents = '';
-            }, 1500);
+            // Call backend API
+fetch("/analyze", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ query: input.value })
+})
+.then(response => response.json())
+.then(data => {
+
+    // Show result card
+    const resultCard = document.getElementById('resultCard');
+    if (resultCard) {
+        resultCard.style.display = 'block';
+        resultCard.classList.remove('animate-in');
+        void resultCard.offsetWidth;
+        resultCard.classList.add('animate-in');
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // 🔹 UPDATE UI WITH STRUCTURED DATA
+    document.getElementById("definition").innerText = data.definition || "";
+    document.getElementById("example").innerText = data.example || "";
+    document.getElementById("extra").innerText = data.extra_info || "";
+
+})
+.catch(error => {
+    console.error(error);
+    showNotification("Error fetching result", "error");
+})
+.finally(() => {
+    // Reset button
+    submitBtn.innerHTML = '<span class="btn-text">Analyze Query</span><span class="btn-icon">→</span><div class="btn-ripple"></div>';
+    submitBtn.classList.remove('loading');
+    submitBtn.style.pointerEvents = '';
+});
         });
         input.addEventListener('input', (e) => {
             this.handleInputChange(e.target);

@@ -1,29 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Concept Clarity Interface</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<section class="hero">
-    <h1 class="hero-title">
-        Concept Clarity <span>Interface</span>
-    </h1>
-    <p class="hero-subtitle">
-        Experience the future of interactive search
-    </p>
+<div class="container">
 
-    <div class="query-card">
-        <label>Enter your query</label>
-        <input type="text" id="queryInput" placeholder="Type a scientific term..." />
-        <button onclick="sendQuery()">Explain →</button>
-        <div class="result" id="resultBox"></div>
+    <!-- Header -->
+    <div class="header">
+        <h1 class="title">
+            Concept Clarity <span class="title-accent">Interface</span>
+        </h1>
+        <p class="subtitle">Experience the future of interactive search</p>
     </div>
-</section>
 
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Input Card -->
+    <div class="query-card">
+        <div class="input-group">
+            <form id="queryForm">
+    
+    <div class="input-group">
+        <label class="input-label">Enter your query</label>
+        <input type="text" id="query" class="query-input" placeholder="Type a scientific term..." />
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="btn-text">Analyze Query →</span>
+    </button>
+
+</form>
+    </div>
+
+    <!-- Result Card -->
+   <div class="result-card" id="resultCard" style="display:none;">
+
+        <div class="result-header">
+            <h3 class="result-title">Analysis Result</h3>
+        </div>
+
+        <div class="result-text">
+
+            <h4>📘 Definition</h4>
+            <p id="definition">-</p>
+
+            <h4>💡 Example</h4>
+            <p id="example">-</p>
+
+            <h4>🧪 Extra Info</h4>
+            <p id="extra">-</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>
